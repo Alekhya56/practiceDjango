@@ -1,0 +1,29 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+</head>
+<body>
+    <div>
+    <form method = "POST">
+        {% csrf_token %}
+        <fieldset class ="form-group">
+            <legend> Log In </legend>
+           {{form.as_p}}
+        </fieldset>
+    <div class = "form-group">
+    <input type ='submit' name = 'Login'>
+    </div>
+    </form>
+    </div>
+    <div>
+    <small class = text-muted> 
+        Don't have a account? <a href= "{% url 'register' %}" >Sign In</a>
+    </small>
+    </div>
+</body>
+</html>
