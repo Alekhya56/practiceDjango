@@ -1,0 +1,18 @@
+{%extends "base.html"%}
+{%block content%}
+<h1> It is contact page</h1>
+<p> Using Django</p>
+
+{{ my_title}} ,{{my_details}}, {{my_value}}, {{heading| striptags}}
+<ul>
+{% for item in my_details %}
+    {% if item == 10 %}
+        <li>{{ forloop.counter}} . {{item |add:13}}</li>
+    {%elif item == 'Alekhya'%}
+        <li> Hi {{item}}</li>
+    {% else %}
+        <li> {{ forloop.counter}} . {{item}}</li>
+    {%endif%}
+{% endfor %}
+</ul>
+{%endblock%}

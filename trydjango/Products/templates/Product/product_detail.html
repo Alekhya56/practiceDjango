@@ -1,0 +1,12 @@
+{%extends "base.html" %}
+{% block content%}
+<h3>hai i am working </h3>
+<p>{{ obj.title }}
+{{ obj.description }}
+{{ obj.price }}
+{% if obj.summary != None %}
+    {{ obj.summary}}
+{% else %}
+    <h4> No summary for this product </h4> 
+{% endif %}</p>
+{% endblock %}
