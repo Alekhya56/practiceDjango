@@ -1,0 +1,27 @@
+{% extends "tasks/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.created_by.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <p> Created By <a class="mr-2" href="{% url 'user-tasks' object.created_by.username %}">{{ object.created_by }}</a> 
+        Assigned To<a class="mr-2" href="{% url 'user-tasks' object.assigned_to.username %}">{{ object.assigned_to }}</a></p>
+        <p> Created at <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small></p>
+         <p> Progress: <small class="text-muted">{{object.state}}</small> &nbsp;
+         Priority: <small class="text-muted">{{object.priority}}</small> </p>
+
+        
+        {% if object.created_by == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'tasks-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'tasks-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+
+      </div>
+      <h5> Title: {{ object.title }}</h5>
+
+      <p class="article-content"> <h5> Description: </h5>{{ object.content }}</p>
+    </div>
+  </article>
+{% endblock content %}
