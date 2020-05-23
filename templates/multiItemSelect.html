@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select multiple item combinations</title>
+</head>
+
+<body>
+
+<form id = 'myform' method = 'POST'>
+     {% csrf_token %}
+    <table border ='1' width = '200' hieght = '300'>
+            <thead>
+                <tr>
+                <th> SNo </th>
+                <th> Item </th>
+                <th> Amount </th>
+                    <th> Enter SNo</th></tr>
+            </thead>
+            {% for item in object %}
+            <tr>
+                <td> {{ item.sno }}</td>
+                <td> {{ item.item_name }}</td>
+                <td> {{ item.amount }}</td>
+                <td>
+                    <input type= "text" placeholder ='E.g, 3,4,5,6' name="entry" id ="frt" unique = 'foo' >
+                    </td>
+            </tr>
+            {% endfor %}
+            </table>
+            <b>Note:</b>Please enter the Sno of items that you want to associate with and must be unique.
+            <br> <button  type ='submit' id = 'bill' value = 'bill' >Bill </button>
+</form>
+
+</body>
+</html>
+<!---------------------------------------------->
+
+    <br>
+<br>
+        <form>
+         {% csrf_token %}
+        {% for item in query %}
+                <table border ='1' width = '200' hieght = '300'>
+                    <thead>
+                        <tr>
+                        <th> SNo </th>
+                        <th> Item </th>
+                        <th> Amount </th>
+                    </thead>
+                    {% for itm in item %}
+                        <tr>
+                            <td> {{ itm.sno }}</td>
+                            <td> {{ itm.item_name }}</td>
+                            <td> {{ itm.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                    <p><b>Total &nbsp {{total.pop}} </b></p>
+        {% endfor %}
+        <br>
+</form>

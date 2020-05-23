@@ -1,0 +1,64 @@
+<form action = '/./action/' method = 'POST'>
+     {% csrf_token %}
+   <h3> Generate Bill </h3>
+    <table border ='1' width = '200' hieght = '300'>
+            <thead>
+                <tr>
+                <th> SNo </th>
+                <th> Item </th>
+                <th> Amount </th>
+                    <th> Select</th></tr>
+            </thead>
+            {% for item in object %}
+            <tr>
+                <td> {{ item.sno }}</td>
+                <td> {{ item.item_name }}</td>
+                <td> {{ item.amount }}</td>
+                <td>
+                    <input type="checkbox" name="frt" id ="frt" value= {{ item.sno }}>
+                    </td>
+            </tr>
+        {% endfor %}
+            </table>
+
+            <br> <button  type ='submit' name = 'bill' value = 'bill' >Bill </button>
+            <button  type ='submit' name = 'add' value = 'add'> Add Item </button>
+            <button  type ='submit' name = 'remove' value = 'remove'> Remove Item </button>
+                <p> <a href ='/multiitem'>Click here to select multiple item combinations</a> </p>
+        <br> <br>
+        {% if object and 'remove' in request.POST %}
+        <b>Please select at least one item to remove </b>
+        {% endif %}
+       </form>
+
+
+
+<!------------------------------Form2------------------------>
+    <br>
+<br>{% if 'bill' in request.POST %}
+    {% if obj %}
+        <form>
+         {% csrf_token %}
+        <table border ='1' width = '200' hieght = '300'>
+                <thead>
+                    <tr>
+                    <th> SNo </th>
+                    <th> Item </th>
+                    <th> Amount </th>
+                </thead>
+                {% for item in obj %}
+                <tr>
+                    <td> {{ item.sno }}</td>
+                    <td> {{ item.item_name }}</td>
+                    <td> {{ item.amount }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if total %}
+            <p><b>Total &nbsp {{ total }} </b></p>
+        {% endif %}
+        </form>
+    {% else %}
+        <b>Please select at least one item to generate bill</b>
+{% endif %}
+{% endif %}
